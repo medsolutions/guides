@@ -7,8 +7,17 @@ AllCops:
   # to ignore them, so only the ones explicitly set in this file are enabled.
   DisabledByDefault: true
   # Global exclude rules
-#  Exclude:
-#    - '**/templates/**/*'
+  Exclude:
+    - config/initializers/*.rb
+    - config/initializers/*.rb
+    - db/schema.rb
+
+Metrics:
+  Exclude:
+    - config/**/*.rb
+    - config/*.rb
+    - spec/**/*.rb
+    - spec/*.rb
 
 ################################# +Bundler+ #############
 
@@ -71,7 +80,7 @@ Layout/BlockEndNewline:
 
 Layout/CaseIndentation:
   EnforcedStyle: case
-  IndentOneStep: false
+#  IndentOneStep: false
 #  IndentationWidth: 12
   Enabled: true
 
@@ -84,12 +93,12 @@ Layout/ClassStructure:
     - association
     - macros
     - public_class_methods
-    - initializer
     - public_methods
     - protected_attribute_macros
     - protected_methods
     - private_attribute_macros
     - private_delegate
+    - initializer
     - private_methods
   Categories:
     association:
@@ -522,7 +531,7 @@ Lint/NonLocalExitFromIterator:
   Enabled: true
 
 Lint/NumberConversion:
-  Enabled: true
+  Enabled: false
 
 Lint/OrderedMagicComments:
   Enabled: true
@@ -655,13 +664,23 @@ Lint/Void:
 ################################# +Metrics+ #############
 Metrics/AbcSize:
   Max: 15
+  Exclude:
+    - 'db/**/*.rb'
+    - 'db/*.rb'
   Enabled: true
 
 Metrics/BlockLength:
   CountComments: false
 #  Max: 25
 #  ExcludedMethods: [refine]
-#  Exclude: '**/*.gemspec'
+  Exclude:
+    - 'config/**/*.rb'
+    - 'config/*.rb'
+    - 'spec/**/*.rb'
+    - 'spec/*.rb'
+    - '**/*.gemspec'
+    - 'db/**/*.rb'
+    - 'db/*.rb'
   Enabled: true
 
 Metrics/BlockNesting:
@@ -680,7 +699,7 @@ Metrics/CyclomaticComplexity:
 
 Metrics/LineLength:
   AutoCorrect: false
-  Max: 80
+  Max: 120
   AllowHeredoc: true
   AllowURI: true
 #  URISchemes: [http, https]
@@ -692,6 +711,10 @@ Metrics/MethodLength:
   CountComments: false
   Max: 10
   ExcludedMethods: []
+  Exclude:
+    - '**/*.gemspec'
+    - 'db/**/*.rb'
+    - 'db/*.rb'
   Enabled: true
 
 Metrics/ModuleLength:
@@ -791,14 +814,16 @@ Naming/VariableNumber:
 
 Rails/ActionFilter:
   EnforcedStyle: action
-#  Include: "app/controllers/**/*.rb"
+#  Include:
+#    - "app/controllers/**/*.rb"
   Enabled: true
 
 Rails/ActiveRecordAliases:
   Enabled: true
 
 Rails/ActiveRecordOverride:
-  Include: "app/models/**/*.rb"
+  Include:
+    - "app/models/**/*.rb"
   Enabled: true
 
 Rails/ActiveSupportAliases:
@@ -824,11 +849,13 @@ Rails/Blank:
 
 Rails/BulkChangeTable:
   Database: postgresql
-#  Include: "db/migrate/*.rb"
+#  Include:
+#    - "db/migrate/*.rb"
   Enabled: true
 
 Rails/CreateTableWithTimestamps:
-  Include: "db/migrate/*.rb"
+  Include:
+    - "db/migrate/*.rb"
   Enabled: true
 
 Rails/Date:
@@ -837,7 +864,8 @@ Rails/Date:
 
 Rails/Delegate:
   EnforceForPrefixed: true
-  Include: "app/models/**/*.rb"
+  Include:
+    - "app/models/**/*.rb"
   Enabled: true
 
 Rails/DelegateAllowBlank:
@@ -848,7 +876,8 @@ Rails/DynamicFindBy:
   Enabled: true
 
 Rails/EnumUniqueness:
-#  Include: "app/models/**/*.rb"
+#  Include:
+#    - "app/models/**/*.rb"
   Enabled: true
 
 Rails/EnvironmentComparison:
@@ -864,19 +893,23 @@ Rails/FilePath:
   Enabled: true
 
 Rails/FindBy:
-#  Include: "app/models/**/*.rb"
+#  Include:
+#    - "app/models/**/*.rb"
   Enabled: true
 
 Rails/FindEach:
-#  Include: "app/models/**/*.rb"
+#  Include:
+#    - "app/models/**/*.rb"
   Enabled: true
 
 Rails/HasAndBelongsToMany:
-#  Include: "app/models/**/*.rb"
+#  Include:
+#    - "app/models/**/*.rb"
   Enabled: true
 
 Rails/HasManyOrHasOneDependent:
-#  Include: "app/models/**/*.rb"
+#  Include:
+#    - "app/models/**/*.rb"
   Enabled: true
 
 Rails/HttpPositionalArguments:
@@ -888,11 +921,13 @@ Rails/HttpStatus:
   Enabled: true
 
 Rails/IgnoredSkipActionFilterOption:
-#  Include: "app/controllers/**/*.rb"
+#  Include:
+#    - "app/controllers/**/*.rb"
   Enabled: true
 
 Rails/InverseOf:
-#  Include: "app/models/**/*.rb"
+#  Include:
+#    - "app/models/**/*.rb"
   Enabled: true
 
 Rails/LexicallyScopedActionFilter:
@@ -940,7 +975,8 @@ Rails/ReflectionClassName:
   Enabled: true
 
 Rails/RefuteMethods:
-#  Include: "**/test/**/*"
+#  Include:
+#    - "**/test/**/*"
   Enabled: true
 
 Rails/RelativeDateConstant:
@@ -952,7 +988,8 @@ Rails/RequestReferer:
   Enabled: true
 
 Rails/ReversibleMigration:
-#  Include: "db/migrate/*.rb"
+#  Include:
+#    - "db/migrate/*.rb"
   Enabled: true
 
 Rails/SafeNavigation:
@@ -965,7 +1002,8 @@ Rails/SaveBang:
   Enabled: true
 
 Rails/ScopeArgs:
-#  Include: "app/models/**/*.rb"
+#  Include:
+#    - "app/models/**/*.rb"
   Enabled: true
 
 Rails/SkipsModelValidations:
@@ -986,7 +1024,8 @@ Rails/UnknownEnv:
   Enabled: true
 
 Rails/Validation:
-#  Include: "app/models/**/*.rb"
+#  Include:
+#    - "app/models/**/*.rb"
   Enabled: true
 
 #################################=========#############
@@ -1120,7 +1159,14 @@ Style/Dir:
   Enabled: true
 
 Style/Documentation:
-#  Exclude: [spec/**/*, test/**/*]
+  Include:
+    - app/models/*.rb
+    - app/services/**/*.rb
+    - app/services/*.rb
+    - app/operation/**/*.rb
+    - app/operation/*.rb
+  Exclude:
+    - app/models/application_record.rb
   Enabled: true
 
 Style/DocumentationMethod:
@@ -1217,6 +1263,9 @@ Style/IfWithSemicolon:
   Enabled: true
 
 Style/ImplicitRuntimeError:
+  Exclude:
+    - 'config/**/*.rb'
+    - 'config/*.rb'
   Enabled: true
 
 Style/InfiniteLoop:
@@ -1232,6 +1281,9 @@ Style/InverseMethods:
 
 Style/IpAddresses:
 #  Whitelist: [::]
+  Exclude:
+    - config/deploy/*.rb
+    - config/deploy.rb
   Enabled: true
 
 Style/Lambda:
@@ -1252,8 +1304,8 @@ Style/MethodCallWithArgsParentheses:
 #  AllowParenthesesInMultilineCall: false
 #  AllowParenthesesInChaining: false
 #  AllowParenthesesInCamelCaseMethod: false
-#  EnforcedStyle: require_parentheses	require_parentheses,
-  Enabled: true
+  EnforcedStyle: require_parentheses
+  Enabled: false
 
 Style/MethodCallWithoutArgsParentheses:
   Enabled: true
@@ -1283,6 +1335,8 @@ Style/MixinGrouping:
   Enabled: true
 
 Style/MixinUsage:
+  Exclude:
+    - bin/*
   Enabled: true
 
 Style/ModuleFunction:
@@ -1359,6 +1413,8 @@ Style/NumericLiteralPrefix:
 Style/NumericLiterals:
   MinDigits: 5
   Strict: false
+  Exclude:
+    - db/schema.rb
   Enabled: true
 
 Style/NumericPredicate:
@@ -1430,6 +1486,9 @@ Style/RedundantReturn:
   Enabled: true
 
 Style/RedundantSelf:
+  Exclude:
+    - 'config/**/*.rb'
+    - 'config/*.rb'
   Enabled: true
 
 Style/RedundantSortBy:
@@ -1492,7 +1551,7 @@ Style/StderrPuts:
   Enabled: true
 
 Style/StringHashKeys:
-  Enabled: true
+  Enabled: false
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
